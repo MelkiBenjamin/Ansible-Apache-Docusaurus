@@ -1,0 +1,179 @@
+1) creer conteneur serveur-web
+2) creer ou mettre cle ssh publique dans autorized (automatiser avec commande 
+lxc file push : lxc file push ~/.ssh/id_rsa.pub test-ansible/root/.ssh/authorized_keys)
+2) creer .ansible.cfg a la racine utlisateur avec :
+[defaults]
+inventory = ~/ansible/etc/hosts
+remote_user = root
+3) creer dossier etc avec fichier host:
+testmariadb-ansible ansible_host=10.42.42.249
+serveur-test ansible_host=10.42.42.58
+nomconteneur ansible_host=ipconteneur
+4) faire un test ansible avec ansible -m ping testmariadb-ansible
+accepter le fingerprint
+5) creer runner dans ubuntu pas conteneur
+
+ansible -u root -m ping testmariadb-ansible
+
+ansible -m ping testmariadb-ansible
+
+ansible-playbook -i etc/host ./recette.yml 
+ansible-playbook ./recette.yml : pour executer le yml
+
+---
+- name: toto.txt
+  hosts: ansible-test (nom du conteneur) ou all
+  remote_user: root
+
+  tasks:
+  - name: create empty toto.txt file
+    ansible.builtin.file:
+      path: /etc/toto.txt
+      state: touch
+
+  - name: install needed packages
+    ansible.builtin.apt:
+      name: cowsay
+      state: present
+      update_cache: yes
+
+  - name: run a cowsay
+    ansible.builtin.shell:
+      cmd: cowsay "hello DevOps"
+
+
+-----------------------
+
+github action
+name: Deploy Ansible playbooks
+
+on:
+  push:
+  workflow_dispatch:
+jobs:
+  run-ansible:
+    runs-on: self-hosted
+
+
+    steps:
+      - name: Check Out Repository
+        uses: actions/checkout@v4
+        
+      - name: copy ansible files
+        run: |
+          rsync -av -P ansible /home/student
+
+pourquoi mon ansible-playbook ./recette.yml s'execute dans ma vm sans erreur mais pas avec github action erreur publikey ? car pas metre de publikey dans github action
+
+ansible module
+
+task : tache a realiser par ansible
+roles : ensemble de tache (tasks)
+files : fichier de lancement (fichier source de site) index.html, fichier de travail, configuration
+handlers : configuration systeme (start,restart apache), si notify dans tache de role alors execute sont handlers SI modification de cette partie de tache
+template : pour mettre des variables, des boucles...
+host : par defaut goupe all on peut mettre un groupe
+[test-ansible]
+first ansible_host
+variable : situé dans etc/host_vars/nomserveur.yml
+titi: toto
+
+ansible
+├── etc
+│   └── hosts
+|   |___host_vars
+|   |    |___serveur-web.yml
+|   | 
+|   |___group_vars
+|       
+└── playbook
+    └── recette.yml
+        roles
+         |__ apache
+                |___ tasks  
+                |     |___main.yml   
+                |         
+                |____files
+                |      |___index.yml
+                |          security.conf (parametre securité apache)
+                |____handlers
+                |     |____main.yml  
+                |
+                |____templates
+
+
+
+role:
+---
+  - name: Install Apache2
+    ansible.builtin.apt:
+      name: apache2
+      state: present
+      update_cache: true
+
+  - name: Create a new database with name 'writefreely'
+    mysql_db:
+      name: writefreely
+      state: present
+
+  - name: Create database user with name 'benjamin' and password 'azertyuio' with all database privileges
+    mysql_user:
+      name: benjamin
+      password: azertyuio.613
+      priv: '*writefreely*:ALL'
+      state: present
+
+rsync -av --delete -P ansible /home/student
+
+automatiser dans github action clé ssh pour ansible
+
+inventaire
+en ini ou yaml
+
+ini
+[all]
+mysql ansible_host=10.42.42.42
+nomconteneur ansible_host=ipoconteneur
+
+[all]: group all par defaut ca marche sans.
+
+yml
+ungrouped:
+  hosts:
+    
+all:
+  hosts:
+    ansible_host: 10.42.42.42
+    ansible_user: root
+
+item: variable predefini qui fait le lien sur le loop
+loop: boucle avec une liste ou une variable avec une liste 
+
+- name: Create database user and password with all and grant database privileges 
+  community.mysql.mysql_user:
+    name: '{{ item.name }}'
+    password: '{{ item.password }}'
+    priv: 'eponges.*:ALL' ou '{{ item.priv }}'
+    state: present
+    login_unix_socket: /var/run/mysqld/mysqld.sock
+  loop: '{{ user_list }}' (ou list en dessous)
+    - toto
+    - titi
+    - tutu
+
+templates : dossier dans un role 
+condition : when dans une tache conditionner des tache 
+ansible-pull : pour utiliser ansible sur localhost inversion du proceder ansible
+ansible vault: secu
+gather_facts
+
+
+
+ip conteneur: '{{ ansible_default_ipv4 }}'
+architecture: '{{ ansible_architecture }}'
+nom de la distribution: '{{ ansible_distribution }}'
+capacité de ram: '{{ ansible_memory_mb.real.total }}'
+version de python: '{{ ansible_python_version }}'
+
+1)installer un conteneur docker avec ansible dessus et github action 
+2)installer un conteneur docker avec ansible dessus creer une recette qui ansible pull
