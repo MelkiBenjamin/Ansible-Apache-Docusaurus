@@ -13,3 +13,6 @@ jobs:
     
     - name: donne la date pour test
       run: date
+
+    - name: test
+      run: ls c:\
