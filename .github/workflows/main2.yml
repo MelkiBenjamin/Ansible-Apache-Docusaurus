@@ -13,3 +13,12 @@ jobs:
     
     - name: donne la date pour test
       run: date
+
+    - name: copie de etc ansible 
+      run: cp -r etc /home/benjamin/ansible/ansible
+    
+    - name: copie de playbook ansible
+      run: cp -r playbook /home/benjamin/ansible/ansible/
+
+    - name: execution de la configuration de yml ansible
+      run: ansible-playbook /home/benjamin/ansible/ansible/playbook/recette.yml -v
