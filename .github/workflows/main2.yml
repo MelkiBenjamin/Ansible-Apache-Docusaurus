@@ -1,10 +1,9 @@
 name: configuration conteneur
-on: [workflow_dispatch]
+on: [push, workflow_dispatch]
 
 jobs:
 
   deploy1:
-    if: windows
 
     runs-on: self-hosted
 
@@ -14,6 +13,3 @@ jobs:
     
     - name: donne la date pour test
       run: date
-
-    - name: test
-      run: ls c:\
