@@ -5,6 +5,7 @@
 
   roles:
   - apache
+  - docusaurus
 
   tasks:
   - name: create empty toto.txt files
