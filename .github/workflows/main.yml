@@ -4,7 +4,6 @@ on: [workflow_dispatch]
 jobs:
 
   deploy1:
-    if: windows
 
     runs-on: self-hosted
 

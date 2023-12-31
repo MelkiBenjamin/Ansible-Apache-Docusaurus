@@ -14,7 +14,7 @@ jobs:
     - name: donne la date pour test
       run: date
 
-    - name: copie de etc ansible 
+    - name: copie de etc ansible l
       run: cp -r etc /home/benjamin/ansible/ansible
     
     - name: copie de playbook ansible
