@@ -4,8 +4,8 @@
   remote_user: root
 
   roles:
-     - apaches2
-#    - mariadb
+    - apaches2
+#   - mariadb
 
   tasks:
   - name: create empty toto.txt files
