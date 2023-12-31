@@ -1,6 +1,6 @@
 ---
 - name: toto.txt
-  hosts: vigilant_banzai
+  hosts: jolly_lamarr
   remote_user: root
 
 # roles:
@@ -10,7 +10,5 @@
   tasks:
   - name: create empty toto.txt files
     ansible.builtin.file:
-      path: /etc/toto10.txt
+      path: /etc/toto32.txt
       state: touch
-
-

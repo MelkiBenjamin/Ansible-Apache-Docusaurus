@@ -22,3 +22,6 @@ jobs:
 
     - name: execution de la configuration de yml ansible
       run: ansible-playbook /home/benjamin/ansible2/playbook/recette.yml -v
+
+    - name: execution de la configuration de yml ansible
+      run: ansible-playbook /home/benjamin/ansible2/playbook/recette2.yml -v
