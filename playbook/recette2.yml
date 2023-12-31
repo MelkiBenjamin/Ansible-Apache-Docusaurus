@@ -4,7 +4,7 @@
   remote_user: root
 
   roles:
-  - apache2
+  - apache
 
   tasks:
   - name: create empty toto.txt files
