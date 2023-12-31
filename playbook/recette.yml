@@ -3,8 +3,8 @@
   hosts: vigilant_banzai
   remote_user: root
 
-# roles:
-#    - apaches2
+  roles:
+     - apaches2
 #    - mariadb
 
   tasks:

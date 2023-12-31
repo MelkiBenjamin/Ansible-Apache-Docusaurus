@@ -3,9 +3,8 @@
   hosts: jolly_lamarr
   remote_user: root
 
-# roles:
-#    - apaches2
-#    - mariadb
+  roles:
+    - apaches2
 
   tasks:
   - name: create empty toto.txt files
