@@ -16,6 +16,6 @@
     dest: /etc/apache2/conf-available/security.conf
   notify: restart apache
 
-- name: Prints 
-  ansible.builtin.debug:
-    msg: "ma variable est bien : '{{ titi }}'"
+#- name: Prints 
+#  ansible.builtin.debug:
+#    msg: "ma variable est bien : '{{ titi }}'"
