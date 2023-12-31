@@ -1,0 +1,22 @@
+password_mysql: azertyuio.61
+user_list:
+  - name: luc skywalker
+    password: azertyui.61
+    priv: '*.*:ALL'
+  - name: anakin
+    password: azertyu.61
+    priv: '*.*:ALL'
+  - name: aalto
+    password: azert.61
+    priv: '*.*:ALL'
+  - name: bob
+    password: azert.61
+    priv: 'eponges.*:ALL'
+
+user_list_remove:
+  - yoda
+  - tonton
+
+mysql_key_buffer_size: 32M
+mysql_thread_cache_size: 8
+mysql_innodb_buffer_pool_size: 8G

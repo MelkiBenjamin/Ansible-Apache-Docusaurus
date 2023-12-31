@@ -1,0 +1,13 @@
+titi: toto
+password: azertyuio.61
+docusaurus: 
+  - assets
+  - blog
+  - docs
+  - img
+  - markdown-page
+  - premiere-page
+  - .nojekyll
+  - 404.html
+  - index.html
+  - sitemap.xml

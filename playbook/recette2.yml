@@ -1,6 +1,6 @@
 ---
 - name: toto.txt
-  hosts: jolly_lamarr
+  hosts: docusaurus
   remote_user: root
 
   roles:
