@@ -1,2 +1,2 @@
 github-action ansible_host=172.17.0.1
-vigilant_banzai ansible_host=172.17.0.2
+vigilant_banzai ansible_host=172.17.0.3
