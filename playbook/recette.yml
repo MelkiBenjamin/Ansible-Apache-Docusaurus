@@ -1,6 +1,6 @@
 ---
 - name: toto.txt
-  hosts: all
+  hosts: vigilant_banzai
   remote_user: root
 
 # roles:
