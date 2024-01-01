@@ -1,5 +1,6 @@
 name: configuration conteneur
-on: [workflow_dispatch]
+on: [push]
+
 
 jobs:
 
