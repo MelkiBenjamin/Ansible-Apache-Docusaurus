@@ -1,3 +1,3 @@
-# Ansible-Apache-Docusaurus #
+# Ansible Apache Docusaurus #
 
-Depot qui utilise Ansible avec des roles pour installer et configurer Apache et Docusaurus.
+Dépôt qui utilise Ansible avec des rôles pour installer et configurer Apache et Docusaurus.
