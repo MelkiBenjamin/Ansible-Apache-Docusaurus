@@ -1,9 +1,9 @@
-name: configuration conteneur
+name: Ansible configuration conteneur
 on: [workflow_dispatch]
 
 jobs:
 
-  deploy1:
+  deploy:
 
     runs-on: self-hosted
 
@@ -11,17 +11,17 @@ jobs:
     - name: Checkout
       uses: actions/checkout@v4
     
-    - name: donne la date pour test 1
+    - name: Donne la date pour test 1
       run: date
 
-    - name: copie de etc ansible l
+    - name: Copie de etc ansible l
       run: cp -r etc /home/benjamin/ansible2/
 
-    - name: copie de playbook ansible
+    - name: Copie de playbook ansible
       run: cp -r playbook /home/benjamin/ansible2/
 
-    - name: execution de la configuration de yml ansible
+    - name: Execution de la configuration de yml Ansible
       run: ansible-playbook /home/benjamin/ansible2/playbook/recette.yml -v
 
-    - name: execution de la configuration de yml ansible
+    - name: Execution de la configuration de yml Ansible
       run: ansible-playbook /home/benjamin/ansible2/playbook/recette2.yml -v
